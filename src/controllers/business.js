@@ -2,7 +2,10 @@ const
     Business = require('../models/business'),
     jwt = require('jsonwebtoken'),
     LoyaltyCardProgram = require('../models/loyaltyCardProgram'),
-    Product = require('../models/product')
+    Product = require('../models/product'),
+    generateQRCode = require('../helpers/generateQRCode'),
+    //Jimp = require("jimp"),
+    QRCode = require('easyqrcodejs-nodejs');
 
 
 businessCtrl = {
@@ -147,6 +150,30 @@ businessCtrl = {
             } catch (error) {
                 console.log('inside catch product'+error);
             }
+        },
+
+        createQRCode: async(req,res)=>{
+            /* const dataString = JSON.stringify(req.body)
+            const qrcode = await generateQRCode.generateQRCode(dataString).then(
+                async url =>{
+                    //console.log(url);
+                    return res.status(200).json(url);
+                }
+            ); */
+            // Options
+            const dataString = JSON.stringify(req.body)
+            const options = {
+                text: dataString
+            };
+
+            // New instance with options
+            var qrcode = new QRCode(options);
+
+            // Save QRCode image
+            qrcode.saveImage({
+                path: 'q.png' // save path
+            });
+            
         }
 
         

@@ -20,3 +20,6 @@
 
 * POST :http://localhost:5000/api/v1/users/addloyaltycard/{id} for adding user existing loyalty card to wallet
 * POST :http://localhost:5000/api/v1/businesses/createloyaltycard/
+
+
+* QRCode will be generated from the backend, and will be decoded from the frontend before sent to back a clear data( so if for example i want to generate a QRCode for a product it will be generated in the backend while creating the product, the front will get the qrcode from the user after he scan it and decode a clear operation then call the backend to do the job)

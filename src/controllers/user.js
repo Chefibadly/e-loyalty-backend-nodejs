@@ -127,7 +127,7 @@ const
                     :res.status(200).json({message:"user updated succefuly"});
                     })
             } catch (error) {
-                console.log(error.message)
+                //console.log(error.message)
                 return res.status(500).json({msg: "Server error"});
             }
         },
