@@ -26,19 +26,8 @@ app.use(cors());
 // Using routes
 app.use('/api/v1/users',require("./src/routes/user"));
 app.use('/api/v1/businesses',require("./src/routes/business"));
+app.use('/api/v1/products',require("./src/routes/product"))
 
-/* app.post('/person',async (req,res)=>{
-    const nut= new NutModel();
-
-    await nut.save((err)=>{
-        if(err){
-            return res.status(400).json(err)
-        }
-        return res.status(200).json(nut)
-    });
-
-    console.log(nut)
-}) */
 
 const port= process.env.PORT || 8000;
 

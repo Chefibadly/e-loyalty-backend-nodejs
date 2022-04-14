@@ -105,53 +105,6 @@ businessCtrl = {
                 //console.log(loyaltyCards)
         },
 
-        addProduct: async (req,res)=>{
-            const product = new Product(req.body)
-            try {
-                await Business.findById(req.params.id).then(async businessFound =>{
-                    if(!businessFound){
-                        return res.status(400).json({
-                            error: "Business is not found "+err
-                        })
-                    }else{
-                        await Product.findOne({name:product.name}).then(async productFound =>{
-                            if(productFound){
-                                console.log("update product",productFound)
-                                await Product.updateOne({_id:productFound._id},{quantity:product.quantity+productFound.quantity})
-                                return res.status(200).json({
-                                    message: "product updated succefully",
-                                    product
-                                })
-                            }else{
-                                await product.save(async(err,product)=>{
-                                    if(err){
-                                        console.log("hello"+product)
-                                        return res.status(400).json({
-                                            error: "Unable to add product"+err
-                                        })
-                                    }else{
-                                        const products = businessFound.addProduct(product);
-                                        console.log("products and business",products,+" "+businessFound)
-                                        await Business.updateOne({_id:businessFound._id},{products:products})
-                                        return res.status(200).json({
-                                            message: "Success",
-                                            product
-                                        })
-                                    }
-                                    
-                                })
-                            }
-                        })
-                        
-                    }
-                })
-                
-                
-            } catch (error) {
-                console.log('inside catch product'+error);
-            }
-        },
-
         createQRCode: async(req,res)=>{
             /* const dataString = JSON.stringify(req.body)
             const qrcode = await generateQRCode.generateQRCode(dataString).then(
