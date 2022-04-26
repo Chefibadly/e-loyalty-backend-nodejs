@@ -37,7 +37,7 @@ businessCtrl = {
                 const {_id, username} = business;
                 return res.json({
                     token,
-                    business:business
+                    business:business._id
                 })
             })
         
@@ -61,50 +61,6 @@ businessCtrl = {
                 })
             });
         },
-
-        createLoyaltyCardProgram: async (req,res)=>{
-            const loyaltyCardProgram = new LoyaltyCardProgram(req.body);
-            try {
-                
-                
-                await loyaltyCardProgram.save(async (error,loyaltyCardProgram)=>{
-                    if(!error){
-                        const business= req.body.business;
-                await Business.findById(business).then(async businessFound =>{
-
-                    //console.log(businessFound)
-                    const loyaltyCardPrograms = businessFound.addLoyaltyCardProgram(loyaltyCardProgram);
-                    console.log(businessFound._id)
-                    await Business.findByIdAndUpdate(businessFound._id,{loyaltyCardPrograms:loyaltyCardPrograms})
-                    .then(businessFound =>{
-                        console.log("updated",businessFound);
-                        return (!businessFound)? res.status(200).json({message:" business not found"})
-                        :res.status(200).json({
-                            message_2:"business updated succefuly",
-                            message_1: "loyalty card created",
-                            loyaltyCardPrograms
-                        });
-                    })
-                })
-                       /*  res.status(201).json({
-                            message: "loyalty card created",
-                            loyaltyCard
-                        }) */
-                    }else{
-                        console.log(error);
-                        res.status(400).json(error)
-                    }
-                })
-            }catch(err){
-                console.log('inside loyalty'+error);
-            }
-                
-                
-                //console.log(business)
-                
-                //console.log(loyaltyCards)
-        },
-
         createQRCode: async(req,res)=>{
             /* const dataString = JSON.stringify(req.body)
             const qrcode = await generateQRCode.generateQRCode(dataString).then(

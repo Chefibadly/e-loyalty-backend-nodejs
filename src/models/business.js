@@ -35,11 +35,11 @@ const businessSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    loyaltyCardPrograms: [{
+    /* loyaltyCardPrograms: [{
         type: Schema.Types.ObjectId, 
         ref:'LoyaltyCardProgram',
         
-    }],
+    }], */
 
     products:[{
         type: Schema.Types.ObjectId, 
@@ -75,10 +75,10 @@ businessSchema.methods = {
             return (err);
         }
     },
-    addLoyaltyCardProgram: function(loyaltyCardProgram){
+    /* addLoyaltyCardProgram: function(loyaltyCardProgram){
         this.loyaltyCardPrograms.push(loyaltyCardProgram);
         return this.loyaltyCardPrograms;
-    },
+    }, */
     addProduct: function(product){
         this.products.push(product);
         return this.products;

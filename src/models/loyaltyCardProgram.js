@@ -18,7 +18,7 @@ const loyaltyCardProgramSchema = new mongoose.Schema({
         required:false
     },
     customers:[{
-        type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         ref:'User'
         }],
     business:{

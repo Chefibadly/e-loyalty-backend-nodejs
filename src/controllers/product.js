@@ -12,7 +12,7 @@ productCtrl={
             await Business.findById(req.params.id).then(async businessFound =>{
                 if(!businessFound){
                     return res.status(400).json({
-                        error: "Business is not found "+err
+                        error: "Business is not found "
                     })
                 }else{
                     await Product.findOne({name:product.name}).then(async productFound =>{

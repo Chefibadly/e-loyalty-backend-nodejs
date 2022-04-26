@@ -8,11 +8,11 @@ const
 
 
 
-router.post('/addProduct/:id',productCtrl.addProduct);
-router.get('/getAllProducts',productCtrl.getAllProducts);
-router.get('/getProductById/:id',productCtrl.getProductById);
-router.put('/updateProductById/:id',productCtrl.updateProductById);
-router.delete('/deleteProductById/:id',productCtrl.deleteProductById);
+router.post('/:id',productCtrl.addProduct);
+router.get('/',productCtrl.getAllProducts);
+router.get('/:id',productCtrl.getProductById);
+router.put('/:id',productCtrl.updateProductById);
+router.delete('/:id',productCtrl.deleteProductById);
 
 
 
